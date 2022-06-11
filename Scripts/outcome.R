@@ -1,0 +1,13 @@
+# install.packages("data.table")
+library("data.table")
+
+
+setwd("C:/Users/melan/Documents/GitHub/ProjAssignment3/RProgAssignment3/Data")
+outcome <- data.table::fread('outcome-of-care-measures.csv')
+outcome[, (11) := lapply(.SD, as.numeric), .SDcols = (11)]
+outcome[, lapply(.SD
+                 , hist
+                 , xlab= "Deaths"
+                 , main = "Hospital 30-Day Death (Mortality) Rates from Heart Attack"
+                 , col="lightblue")
+        , .SDcols = (11)]
